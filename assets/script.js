@@ -17,7 +17,7 @@ const slides = [
 	}
 ]
 
-// Sélectionne les boutons des flèches et les bullet points
+// Sélectionne les boutons des flèches et les dots
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const dots = document.querySelectorAll('.dot');
@@ -37,7 +37,7 @@ const dots = document.querySelectorAll('.dot');
 // Initialise l'index de la diapositive en cours
 let currentSlideIndex = 0;
 
-// Met à jour les bullet points pour indiquer la diapositive en cours
+// Met à jour les dots pour indiquer la diapositive en cours
 function updateDots() {
   dots.forEach((dot, index) => {
     if (index === currentSlideIndex) {
@@ -94,5 +94,5 @@ function updateCarousel() {
   tagLine.innerHTML = currentSlide.tagLine;
 }
 
-// Initialise les bullet points
+// Initialise les dots
 updateDots();
