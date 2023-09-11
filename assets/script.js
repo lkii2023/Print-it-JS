@@ -24,13 +24,11 @@ const dots = document.querySelectorAll('.dot');
 
 // Écouteur d'événement pour la flèche gauche
 //prevBtn.addEventListener('click', () => {
-  // Insère ici le code pour passer à la diapositive précédente
  // console.log("Flèche gauche cliquée");
 //});
 
 // Écouteur d'événement pour la flèche droite
 //nextBtn.addEventListener('click', () => {
-  // Insère ici le code pour passer à la diapositive suivante
 //  console.log("Flèche droite cliquée");
 //});
 
