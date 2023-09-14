@@ -1,3 +1,4 @@
+// Array of slides
 const slides = [
   {
     image: "assets/images/slideshow/slide1.jpg",
@@ -18,25 +19,44 @@ const slides = [
   },
 ];
 
-// Sélectionne les boutons des flèches et les dots
+// Select arrow buttons and dots
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const dots = document.querySelectorAll(".dot");
 
-// Écouteur d'événement pour la flèche gauche
-//prevBtn.addEventListener('click', () => {
-// console.log("Flèche gauche cliquée");
-//});
-
-// Écouteur d'événement pour la flèche droite
-//nextBtn.addEventListener('click', () => {
-//  console.log("Flèche droite cliquée");
-//});
-
-// Initialise l'index de la diapositive en cours
+// Initialize the current slide index
 let currentSlideIndex = 0;
 
-// Met à jour les dots pour indiquer la diapositive en cours
+prevBtn.addEventListener("click", () => {
+  if (currentSlideIndex === 0) {
+    currentSlideIndex = slides.length - 1; // Move to the last slide
+  } else {
+    currentSlideIndex--;
+  }
+  updateCarousel();
+  updateDots();
+});
+
+nextBtn.addEventListener("click", () => {
+  if (currentSlideIndex === slides.length - 1) {
+    currentSlideIndex = 0; // Return to the first slide
+  } else {
+    currentSlideIndex++;
+  }
+  updateCarousel();
+  updateDots();
+});
+
+// Event listener for the dots
+dots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    currentSlideIndex = index; // Update the current slide based on the clicked bullet point index
+    updateCarousel();
+    updateDots();
+  });
+});
+
+// Update the dots to indicate the current slide
 function updateDots() {
   dots.forEach((dot, index) => {
     if (index === currentSlideIndex) {
@@ -47,51 +67,20 @@ function updateDots() {
   });
 }
 
-// Écouteur d'événement pour le bouton précédent
-prevBtn.addEventListener("click", () => {
-  if (currentSlideIndex === 0) {
-    currentSlideIndex = slides.length - 1; // Passe à la dernière diapositive
-  } else {
-    currentSlideIndex--;
-  }
-  updateCarousel();
-  updateDots();
-});
-
-// Écouteur d'événement pour le bouton suivant
-nextBtn.addEventListener("click", () => {
-  if (currentSlideIndex === slides.length - 1) {
-    currentSlideIndex = 0; // Revient à la première diapositive
-  } else {
-    currentSlideIndex++;
-  }
-  updateCarousel();
-  updateDots();
-});
-
-// Écouteur d'événement pour les dots
-dots.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
-    currentSlideIndex = index; // Met à jour la diapositive en cours en fonction de l'index du bullet point
-    updateCarousel();
-    updateDots();
-  });
-});
-
-// Fonction pour mettre à jour le contenu du carrousel
+// Function to update the carousel content
 function updateCarousel() {
-  // Récupère la diapositive en cours à partir du tableau slides
+  // Get the current slide from the slides array
   const currentSlide = slides[currentSlideIndex];
 
-  // Met à jour l'image du carrousel
+  // Update the carousel image
   const bannerImage = document.querySelector(".banner-img");
   bannerImage.src = currentSlide.image;
   bannerImage.alt = `Image ${currentSlideIndex + 1}`;
 
-  // Met à jour la ligne de texte du carrousel
+  // Update the carousel tagline text
   const tagLine = document.querySelector(".banner-img + p");
   tagLine.innerHTML = currentSlide.tagLine;
 }
 
-// Initialise les dots
+// Initialize the dots
 updateDots();
